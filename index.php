@@ -17,7 +17,14 @@ $route->register('/', 'GET', function () {
 
 $route->register('/coffees', 'GET', function () {
     $Coffees = new CoffeeReviews();
-    $rows = $Coffees->getAverageRatingByCoffee(1);
+
+    //$data = ['reviewer_name'=>'testing','review'=>'nice rating','rating'=>rand(1,5),'coffee_id'=>1];
+    //$rows = $Coffees->create($data);
+
+
+    $data = ['reviewer_name'=>'testing','review'=>'nice rating','rating'=>rand(1,5),'coffee_id'=>1];
+    $rows = $Coffees->update($data,2);
+
 
     Utility::r($rows);
 });
