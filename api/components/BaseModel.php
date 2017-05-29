@@ -1,6 +1,6 @@
 <?php
 
-abstract class Queries
+abstract class BaseModel
 {
     protected $_table;
     public $pdo;

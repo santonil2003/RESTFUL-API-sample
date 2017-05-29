@@ -2,7 +2,7 @@
 /**
  * route
  */
-class Coffees extends Queries
+class Coffees extends BaseModel
 {
 
     public function __construct()

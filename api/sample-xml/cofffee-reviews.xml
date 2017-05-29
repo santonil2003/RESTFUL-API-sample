@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<cofffee-reviews>
+<cofffee_reviews>
     <id>
         1
     </id>
@@ -116,4 +116,4 @@
             </coffee_id>
         </item5>
     </reviews>
-</cofffee-reviews>
+</cofffee_reviews>
