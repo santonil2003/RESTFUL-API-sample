@@ -3,24 +3,20 @@
 /**
  * router
  */
-class Router
-{
+class Router {
 
-    private $_trim   = '/\^$';
+    private $_trim = '/\^$';
     private $_routes = array();
 
-    public function register($regex, $requstMethod, $callBack)
-    {
+    public function register($regex, $requstMethod, $callBack) {
 
         $route = new Route(trim($regex, $this->_trim), $requstMethod, $callBack);
         array_push($this->_routes, $route);
     }
 
-    public function route()
-    {
-        $uri           = trim(Request::getValue($_REQUEST, 'uri'), $this->_trim);
-        $requestMethod = Request::getValue($_SERVER, 'REQUEST_METHOD');
-        $params        = array();
+    public function route($uri, $requestMethod) {
+        $uri = trim($uri, $this->_trim);
+        $params = array();
 
         foreach ($this->_routes as $route) {
             if (preg_match('#^' . $route->regex . '$#', $uri, $params) && ($requestMethod == $route->requestMethod)) {
@@ -37,7 +33,6 @@ class Router
                     echo $exc->getMessage();
                 }
             }
-
         }
     }
 

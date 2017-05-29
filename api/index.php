@@ -20,7 +20,6 @@ $route->register('/', 'GET', function () {
     $json = Request::jsonResponse($coffees);
 
     exit($json);
-
 });
 
 $route->register('/coffees', 'GET', function () {
@@ -34,7 +33,6 @@ $route->register('/coffees', 'GET', function () {
     $json = Request::jsonResponse($coffees);
 
     exit($json);
-
 });
 
 $route->register('/coffee/(\d+)', 'GET', function ($coffeeId) {
@@ -45,7 +43,7 @@ $route->register('/coffee/(\d+)', 'GET', function ($coffeeId) {
     $coffee = $coffeeObj->fetch($coffeeId);
 
     // array to json
-   // $json = Request::jsonResponse($coffee);
+    // $json = Request::jsonResponse($coffee);
 
     $xml = Request::xmlResponse($coffee, 'cofffee');
 
@@ -56,7 +54,7 @@ $route->register('/coffee/(\d+)', 'GET', function ($coffeeId) {
 
 $route->register('/coffee/(\d+)/reviews', 'GET', function ($coffeeId) {
 
-    $coffeeObj       = new Coffees();
+    $coffeeObj = new Coffees();
     $coffeeReviewObj = new CoffeeReviews();
 
     // fetch coffee by id
@@ -70,29 +68,28 @@ $route->register('/coffee/(\d+)/reviews', 'GET', function ($coffeeId) {
 
     // array to json
     $json = Request::jsonResponse($coffee);
-  
+
 
     exit();
 });
 
 $route->register('/coffee/create', 'POST', function () {
     $coffeeObj = new Coffees();
-    $coffeeId  = $coffeeObj->create($_POST);
+    $coffeeId = $coffeeObj->create($_POST);
 
     if (is_numeric($coffeeId)) {
         $coffee = $coffeeObj->fetch($coffeeId);
-        $json   = Request::jsonResponse($coffee);
+        $json = Request::jsonResponse($coffee);
         exit($json);
     }
 
     $errorJson = Request::jsonResponse(array('error' => 'failed to create coffee.'), 500);
     exit($errorJson);
-
 });
 
 $route->register('/coffee/(\d+)/review/create', 'POST', function ($coffeeId) {
 
-    $coffeeObj       = new Coffees();
+    $coffeeObj = new Coffees();
     $coffeeReviewObj = new CoffeeReviews();
 
     // fetch coffee by id
@@ -122,10 +119,13 @@ $route->register('/coffee/(\d+)/review/create', 'POST', function ($coffeeId) {
 
     $errorJson = Request::jsonResponse(array('error' => 'failed to create review for Coffee:$coffeeId.'), 500);
     exit($errorJson);
-
 });
 
 
 
 // route based on request uri
-$route->route();
+
+$uri = Request::getValue($_REQUEST, 'uri');
+$requestMethod = Request::getValue($_SERVER, 'REQUEST_METHOD');
+
+$route->route($uri, $requestMethod);
