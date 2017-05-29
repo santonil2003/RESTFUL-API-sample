@@ -68,11 +68,56 @@ $route->register('/coffee/(\d+)/reviews', 'GET', function ($coffeeId) {
 });
 
 $route->register('/coffee/create', 'POST', function () {
-    $data = $_POST;
-    Utility::r($data);
+    $coffeeObj = new Coffees();
+    $coffeeId  = $coffeeObj->create($_POST);
+
+    if (is_numeric($coffeeId)) {
+        $coffee = $coffeeObj->fetch($coffeeId);
+        $json   = Request::jsonResponse($coffee);
+        exit($json);
+    }
+
+    $errorJson = Request::jsonResponse(array('error' => 'failed to create coffee.'), 500);
+    exit($errorJson);
+
 });
 
-http: //localhost/api/coffee/add
+$route->register('/coffee/(\d+)/review/create', 'POST', function ($coffeeId) {
+
+    $coffeeObj       = new Coffees();
+    $coffeeReviewObj = new CoffeeReviews();
+
+    // fetch coffee by id
+    $coffee = $coffeeObj->fetch($coffeeId);
+
+    if (empty($coffee)) {
+        // coffee not found
+        $errorJson = Request::jsonResponse(array('error' => "Coffee:$coffeeId does not exist."), 500);
+        exit($errorJson);
+    }
+
+    $review = $coffeeReviewObj->create($_POST);
+
+    if (!empty($review)) {
+
+        // average rating
+        $coffee['average_rating'] = $coffeeReviewObj->getAverageRatingByCoffee($coffeeId);
+
+        // fetch  review by coffee id
+        $coffee['reviews'] = $coffeeReviewObj->fetchByCoffee($coffeeId);
+
+        // array to json
+        $json = Request::jsonResponse($coffee);
+
+        exit($json);
+    }
+
+    $errorJson = Request::jsonResponse(array('error' => 'failed to create review for Coffee:$coffeeId.'), 500);
+    exit($errorJson);
+
+});
+
+
 
 // route based on request uri
 $route->route();
