@@ -10,20 +10,15 @@ require_once 'bootstrap.php';
 
 $route = new Router();
 
-
 $route->register('/', 'GET', function () {
     $coffeeObj = new Coffees();
 
     // fetch all coffees
-    $coffees = $coffeeObj->fetchAll();
+    $coffees = $coffeeObj->getAttributes();
 
-    // array to json
-    $json = Request::jsonResponse($coffees);
-
-    exit($json);
+    Utility::r($coffees);
 
 });
-
 
 $route->register('/coffees', 'GET', function () {
 
@@ -39,8 +34,6 @@ $route->register('/coffees', 'GET', function () {
 
 });
 
-
-
 $route->register('/coffee/(\d+)', 'GET', function ($coffeeId) {
 
     $coffeeObj = new Coffees();
@@ -53,8 +46,6 @@ $route->register('/coffee/(\d+)', 'GET', function ($coffeeId) {
 
     exit($json);
 });
-
-
 
 $route->register('/coffee/(\d+)/reviews', 'GET', function ($coffeeId) {
 
@@ -76,8 +67,12 @@ $route->register('/coffee/(\d+)/reviews', 'GET', function ($coffeeId) {
     exit($json);
 });
 
-/**
- * Route based on call
- **/
+$route->register('/coffee/create', 'POST', function () {
+    $data = $_POST;
+    Utility::r($data);
+});
 
+http: //localhost/api/coffee/add
+
+// route based on request uri
 $route->route();

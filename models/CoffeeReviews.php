@@ -2,49 +2,17 @@
 /**
  * route
  */
-class CoffeeReviews
+class CoffeeReviews extends Queries
 {
-    private $_table = 'coffee_reviews';
 
-    public function fetchAll()
+    public function __construct()
     {
-        global $pdo;
-        $stmt = $pdo->query("SELECT * FROM $this->_table");
-        return $stmt->fetchAll();
+        parent::__construct();
     }
 
-    public function fetch($id)
+    public function setTableName()
     {
-        global $pdo;
-        $stmt = $pdo->prepare("SELECT * FROM $this->_table WHERE id = ?");
-        $stmt->execute(array($id));
-        return $stmt->fetch();
-    }
-
-    public function create($data)
-    {
-        global $pdo;
-        $keys        = array_keys($data);
-        $fields      = '`' . implode('`, `', $keys) . '`';
-        $placeholder = substr(str_repeat('?,', count($keys)), 0, -1);
-        return $pdo->prepare("INSERT INTO `$this->_table`($fields) VALUES($placeholder)")->execute(array_values($data));
-    }
-
-    public function update($data, $id)
-    {
-        global $pdo;
-
-        // prepare update query
-        $sql    = "UPDATE $this->_table SET ";
-        $values = array(':id' => $id);
-        foreach ($data as $name => $value) {
-            $sql .= ' ' . $name . ' = :' . $name . ',';
-            $values[':' . $name] = $value;
-        }
-        $sql = substr($sql, 0, -1); // remove last ,
-        $sql .= ' WHERE id = :id ;';
-
-        return $pdo->prepare($sql)->execute($values);
+        return $this->_table = "coffee_reviews";
     }
 
     public function fetchByCoffee($coffeeId)
