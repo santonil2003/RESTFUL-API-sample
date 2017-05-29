@@ -14,9 +14,7 @@ $route->register('/', 'GET', function () {
     $coffeeObj = new Coffees();
 
     // fetch all coffees
-    $coffees = $coffeeObj->getAttributes();
-
-    Utility::r($coffees);
+    $coffees = $coffeeObj->fetchAll();
 
 });
 
@@ -42,9 +40,13 @@ $route->register('/coffee/(\d+)', 'GET', function ($coffeeId) {
     $coffee = $coffeeObj->fetch($coffeeId);
 
     // array to json
-    $json = Request::jsonResponse($coffee);
+   // $json = Request::jsonResponse($coffee);
 
-    exit($json);
+    $xml = Request::xmlResponse($coffee, 'cofffee');
+
+    exit($xml);
+
+    //exit($json);
 });
 
 $route->register('/coffee/(\d+)/reviews', 'GET', function ($coffeeId) {
@@ -63,8 +65,9 @@ $route->register('/coffee/(\d+)/reviews', 'GET', function ($coffeeId) {
 
     // array to json
     $json = Request::jsonResponse($coffee);
+  
 
-    exit($json);
+    exit();
 });
 
 $route->register('/coffee/create', 'POST', function () {

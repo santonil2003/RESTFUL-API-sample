@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<cofffees>
+    <item0>
+        <id>
+            1
+        </id>
+        <name>
+            Espresso
+        </name>
+        <image_url>
+            Espresso.jpg
+        </image_url>
+    </item0>
+    <item1>
+        <id>
+            2
+        </id>
+        <name>
+            Long black
+        </name>
+        <image_url>
+            long black.jpg
+        </image_url>
+    </item1>
+    <item2>
+        <id>
+            3
+        </id>
+        <name>
+            Long macchiato
+        </name>
+        <image_url>
+            long macchiato.jpg
+        </image_url>
+    </item2>
+    <item3>
+        <id>
+            4
+        </id>
+        <name>
+            cafe latte
+        </name>
+        <image_url>
+            cafe latte.jpg
+        </image_url>
+    </item3>
+    <item4>
+        <id>
+            5
+        </id>
+        <name>
+            test
+        </name>
+        <image_url>
+            test.jph
+        </image_url>
+    </item4>
+    <item5>
+        <id>
+            6
+        </id>
+        <name>
+            rerew
+        </name>
+        <image_url>
+            werwer
+        </image_url>
+    </item5>
+    <item6>
+        <id>
+            7
+        </id>
+        <name>
+            rerew
+        </name>
+        <image_url>
+            werwer
+        </image_url>
+    </item6>
+    <item7>
+        <id>
+            8
+        </id>
+        <name>
+            rerew34
+        </name>
+        <image_url>
+            werwer.pog
+        </image_url>
+    </item7>
+</cofffees>

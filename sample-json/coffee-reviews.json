@@ -1,0 +1,50 @@
+{
+  "id": "1",
+  "name": "Espresso",
+  "image_url": "Espresso.jpg",
+  "average_rating": "2.0000",
+  "reviews": [
+    {
+      "id": "1",
+      "reviewer_name": "Anii",
+      "review": "good test",
+      "rating": "3",
+      "coffee_id": "1"
+    },
+    {
+      "id": "2",
+      "reviewer_name": "testing",
+      "review": "nice rating",
+      "rating": "1",
+      "coffee_id": "1"
+    },
+    {
+      "id": "4",
+      "reviewer_name": "434",
+      "review": "test",
+      "rating": "1",
+      "coffee_id": "1"
+    },
+    {
+      "id": "5",
+      "reviewer_name": "testing",
+      "review": "nice rating",
+      "rating": "2",
+      "coffee_id": "1"
+    },
+    {
+      "id": "6",
+      "reviewer_name": "testing",
+      "review": "nice rating",
+      "rating": "3",
+      "coffee_id": "1"
+    },
+    {
+      "id": "7",
+      "reviewer_name": "sanil",
+      "review": "nice coffee",
+      "rating": "2",
+      "coffee_id": "1"
+    }
+  ]
+}
