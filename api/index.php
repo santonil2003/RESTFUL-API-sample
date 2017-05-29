@@ -16,6 +16,11 @@ $route->register('/', 'GET', function () {
     // fetch all coffees
     $coffees = $coffeeObj->fetchAll();
 
+    // array to json
+    $json = Request::jsonResponse($coffees);
+
+    exit($json);
+
 });
 
 $route->register('/coffees', 'GET', function () {
