@@ -5,7 +5,7 @@ class Request
     /**
      * request response status
      */
-    private function _requestStatus($code)
+    private static function requestStatus($code)
     {
         $status = array(
             200 => 'OK',
@@ -19,10 +19,11 @@ class Request
     /**
      * Response for request
      */
-    public function response($data, $status = 200)
+    public static function jsonResponse($data, $status = 200)
     {
-        header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
-        return json_encode($data);
+        header("HTTP/1.1 " . $status . " " . self::requestStatus($status));
+        header('Content-type: application/json');
+        echo json_encode($data);
     }
 
     /**

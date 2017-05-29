@@ -6,41 +6,78 @@
 require_once 'config.php';
 require_once 'bootstrap.php';
 
-
 //Utility::r($_SERVER);
 
 $route = new Router();
 
+
 $route->register('/', 'GET', function () {
-    echo 'HOME';
+    $coffeeObj = new Coffees();
+
+    // fetch all coffees
+    $coffees = $coffeeObj->fetchAll();
+
+    // array to json
+    $json = Request::jsonResponse($coffees);
+
+    exit($json);
+
 });
+
 
 $route->register('/coffees', 'GET', function () {
-    $Coffees = new CoffeeReviews();
 
-    //$data = ['reviewer_name'=>'testing','review'=>'nice rating','rating'=>rand(1,5),'coffee_id'=>1];
-    //$rows = $Coffees->create($data);
+    $coffeeObj = new Coffees();
 
+    // fetch all coffees
+    $coffees = $coffeeObj->fetchAll();
 
-    $data = ['reviewer_name'=>'testing','review'=>'nice rating','rating'=>rand(1,5),'coffee_id'=>1];
-    $rows = $Coffees->update($data,2);
+    // array to json
+    $json = Request::jsonResponse($coffees);
 
+    exit($json);
 
-    Utility::r($rows);
 });
 
-$route->register('/coffee/(\d+)', 'GET', function () {
-    echo 'Coffee 1';
+
+
+$route->register('/coffee/(\d+)', 'GET', function ($coffeeId) {
+
+    $coffeeObj = new Coffees();
+
+    // fetch coffee by id
+    $coffee = $coffeeObj->fetch($coffeeId);
+
+    // array to json
+    $json = Request::jsonResponse($coffee);
+
+    exit($json);
 });
 
-$route->register('/coffee/(\d+)/test/(\d+)', 'GET', function ($a,$b) {
 
-    echo "Coffee $a, $b";
+
+$route->register('/coffee/(\d+)/reviews', 'GET', function ($coffeeId) {
+
+    $coffeeObj       = new Coffees();
+    $coffeeReviewObj = new CoffeeReviews();
+
+    // fetch coffee by id
+    $coffee = $coffeeObj->fetch($coffeeId);
+
+    // average rating
+    $coffee['average_rating'] = $coffeeReviewObj->getAverageRatingByCoffee($coffeeId);
+
+    // fetch  review by coffee id
+    $coffee['reviews'] = $coffeeReviewObj->fetchByCoffee($coffeeId);
+
+    // array to json
+    $json = Request::jsonResponse($coffee);
+
+    exit($json);
 });
-
 
 /**
-* Route based on call
-**/
+ * Route based on call
+ **/
 
 $route->route();
