@@ -58,16 +58,37 @@ $route->register('/coffee/create', 'POST', function () {
     Response::sendJSON(array('error' => 'failed to create coffee.'), 500);
 });
 
-$route->register('/coffee/update', 'PUT', function () {
-    $coffeeObj = new Coffees();
-    $coffeeId = $coffeeObj->create($_POST);
 
-    if (is_numeric($coffeeId)) {
-        $coffee = $coffeeObj->fetch($coffeeId);
-        Response::sendJSON($coffee);
+$route->register('/review/(\d+)', 'GET', function ($reviewId) {
+    $coffeeReviewObj = new CoffeeReviews();
+    // fetch coffee by id
+    $review = $coffeeReviewObj->fetch($reviewId);
+
+    if ($review) {
+        Response::sendJSON($review);
     }
 
-    Response::sendJSON(array('error' => 'failed to create coffee.'), 500);
+    Response::sendJSON(array('error' => 'failed to fetch review.'), 500);
+});
+
+$route->register('/review/(\d+)/update', 'PUT', function ($reviewId) {
+    if ($reviewId) {
+
+
+        $data = array();
+
+        // read put data
+        parse_str(file_get_contents("php://input"), $data);
+
+        $coffeeReviewObj = new CoffeeReviews();
+        $result = $coffeeReviewObj->update($data, $reviewId);
+
+        if ($result) {
+            Response::sendJSON(array('message' => 'review updated'));
+        }
+    }
+
+    Response::sendJSON(array('error' => 'failed to update reveiw'), 500);
 });
 
 $route->register('/review/(\d+)/delete', 'DELETE', function ($reviewId) {
