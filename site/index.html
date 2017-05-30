@@ -2,20 +2,28 @@
 <html>
     <head>
         <title>Coffee Reviews</title>
-        <script src="js/angular.min.js"></script>
+        <!--<script src="js/angular.min.js"></script>-->
         <script src="js/app.js"></script>
         <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
-    <body ng-app="myApp">
+    <body ng-app="myApp" onload="initApp()">
         <div class="container">
-            <div class="side-bar" ng-controller="coffeeMenuCtrl">
-                <ul>
+            <div class="side-bar" ng-controller="coffeeMenuCtrl" style="display: none;">
+                <ul >
                     <li ng-repeat="coffee in coffees">{{coffee.name}}</li>
                 </ul>
             </div>
-            <div class="main-content" ng-controller="mainContentCtrl">
+
+            <div class="side-bar">
+                <ul id="coffee-menu">
+
+                </ul>
+            </div>
+            <div class="main-content" id="coffee-reveiws">
 
             </div>
         </div>
     </body>
 </html>
+
+

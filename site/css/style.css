@@ -1,0 +1,32 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+ul{
+    list-style: none;
+}
+
+a {
+    cursor: pointer;
+}
+
+.container{
+    margin: 0px auto;
+    width: 960px;
+    border: red solid 1px;
+    overflow: hidden;
+}
+
+.container .side-bar{
+    float: left;
+    width: 200px;
+    padding: 10px;
+}
+
+
+.container .main-content{
+    float: left;
+    width: 700px;
+    padding: 10px;
+}

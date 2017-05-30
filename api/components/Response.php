@@ -1,12 +1,11 @@
 <?php
-class Request
-{
+
+class Response {
 
     /**
      * request response status
      */
-    private static function requestStatus($code)
-    {
+    private static function getStatus($code) {
         $status = array(
             200 => 'OK',
             404 => 'Not Found',
@@ -19,15 +18,14 @@ class Request
     /**
      * Response for request
      */
-    public static function jsonResponse($data, $status = 200)
-    {
-        header("HTTP/1.1 " . $status . " " . self::requestStatus($status));
+    public static function sendJSON($data, $status = 200) {
+        header("HTTP/1.1 " . $status . " " . self::getStatus($status));
         header('Content-type: application/json');
         echo json_encode($data);
+        exit();
     }
 
-    public static function array2XML($array, &$xml_user_info)
-    {
+    public static function array2XML($array, &$xml_user_info) {
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 if (!is_numeric($key)) {
@@ -43,8 +41,9 @@ class Request
         }
     }
 
-    public static function xmlResponse($data, $root)
-    {
+    public static function sendXML($data, $root) {
+
+        header('Content-type: application/xhtml+xml');
         //creating object of SimpleXMLElement
         $xml_user_info = new SimpleXMLElement("<?xml version=\"1.0\"?><" . $root . "></" . $root . ">");
 
@@ -54,27 +53,8 @@ class Request
         //saving generated xml file
         $xml = $xml_user_info->asXML();
 
-        header("HTTP/1.1 " . $status . " " . self::requestStatus($status));
-        header('Content-type: application/rss+xm');
-
         echo $xml;
-
-    }
-
-    /**
-     * isset check with default value
-     * @param type $dataArray
-     * @param type $key
-     * @param type $default
-     */
-    public static function getValue($dataArray, $key, $default = '')
-    {
-
-        if (isset($dataArray[$key])) {
-            return $dataArray[$key];
-        }
-
-        return $default;
+        exit();
     }
 
 }

@@ -1,6 +1,9 @@
 RewriteEngine On
-RewriteBase /api/
+
+# based on project setup following path may vary
+RewriteBase /project/api/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
+#direct all request to index.php with uri
 RewriteRule ^(.*)$ index.php?uri=$1 [QSA,L]

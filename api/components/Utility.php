@@ -22,4 +22,20 @@ class Utility {
         print_r($data);
         echo '</pre>';
     }
+
+    /**
+     * isset check with default value
+     * @param type $dataArray
+     * @param type $key
+     * @param type $default
+     */
+    public static function getValue($dataArray, $key, $default = '') {
+
+        if (isset($dataArray[$key])) {
+            return $dataArray[$key];
+        }
+
+        return $default;
+    }
+
 }
