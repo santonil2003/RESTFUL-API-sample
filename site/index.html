@@ -23,7 +23,50 @@
                 </select>
             </div>
             <div class="main-content" id="main-content">
-                <div id="coffee-reveiws"></div>
+                <div id="coffee-reveiws">
+                    <div class='readme'>
+                        <h1>Coffee review application</h1>
+                        <hr/>
+                        <p>
+                            This application consists of RESTFUL API and Web application.
+                            <br/>API default path :  /project/api/
+                            <br/>Site default path : /project/site/
+
+                            <br/>
+                            API can be configured to work with json or XML
+                            <br/>
+                            e.g for JSON response
+                            <br/>
+                            Response::sendJSON(array('message' => 'review deleted'));
+                            <br/>
+                            e.g for XML response
+                            <br/>
+                            Response::sendXML(array(), 'items');
+
+                            <br/>
+                            web site request's data from API via AJAX GET, POST, PUT and DELETE request methods.
+                        </p>
+                        <hr/>
+                        <p>
+                            API database credentials may needs to be configured based on environment. <br/>
+                            You can configure it from /project/api/config.php
+
+                            define('DB_HOST', 'localhost');<br/>
+                            define('DB_USER', 'root');<br/>
+                            define('DB_PASSWORD', '');<br/>
+                            define('DB_NAME', 'api');<br/>
+                            <br/>
+                        </p>
+                        <hr/>
+                        <p>
+                            Based on project base path you may need to update .htaccess 
+                            <br/> i.e. RewriteBase /project/api/
+
+                        </p>
+
+                        <h2>Click on menu to load coffee details and reviews</h2>
+                    </div>
+                </div>
                 <div id="coffee-reveiw-form"></div>
             </div>
         </div>

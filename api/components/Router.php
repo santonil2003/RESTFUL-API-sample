@@ -8,12 +8,22 @@ class Router {
     private $_trim = '/\^$';
     private $_routes = array();
 
+    /**
+     * register route
+     * @param type $regex
+     * @param type $requstMethod
+     * @param type $callBack
+     */
     public function register($regex, $requstMethod, $callBack) {
-
         $route = new Route(trim($regex, $this->_trim), $requstMethod, $callBack);
         array_push($this->_routes, $route);
     }
 
+    /**
+     * route based on uri and request method
+     * @param type $uri
+     * @param type $requestMethod
+     */
     public function route($uri, $requestMethod) {
         $uri = trim($uri, $this->_trim);
         $params = array();

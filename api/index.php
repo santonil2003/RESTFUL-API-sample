@@ -18,6 +18,7 @@ $route->register('/', 'GET', function () {
     Response::sendJSON($coffees);
 });
 
+
 $route->register('/coffees', 'GET', function () {
     $coffeeObj = new Coffees();
     // fetch all coffees

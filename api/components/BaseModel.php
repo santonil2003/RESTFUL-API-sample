@@ -1,10 +1,25 @@
 <?php
 
+/**
+ * base model
+ */
 abstract class BaseModel {
 
+    /**
+     * table name
+     * @var type 
+     */
     protected $_table;
+
+    /**
+     * pdo oject
+     * @var type 
+     */
     public $pdo;
 
+    /**
+     * set table name
+     */
     abstract protected function setTableName();
 
     public function __construct() {
@@ -17,6 +32,10 @@ abstract class BaseModel {
         $this->setTableName();
     }
 
+    /**
+     * get columns by table name
+     * @return type
+     */
     public function getColumns() {
 
         $stmt = $this->pdo->query("SHOW COLUMNS FROM  $this->_table");
@@ -24,12 +43,21 @@ abstract class BaseModel {
         return array_column($rows, 'Field');
     }
 
+    /**
+     * fetch all rows
+     * @return type
+     */
     public function fetchAll() {
 
         $stmt = $this->pdo->query("SELECT * FROM $this->_table");
         return $stmt->fetchAll();
     }
 
+    /**
+     * fetch one row by primary key
+     * @param type $id
+     * @return type
+     */
     public function fetch($id) {
 
         $stmt = $this->pdo->prepare("SELECT * FROM $this->_table WHERE id = ?");
@@ -37,6 +65,11 @@ abstract class BaseModel {
         return $stmt->fetch();
     }
 
+    /**
+     * insert a row
+     * @param type $data
+     * @return type
+     */
     public function create($data) {
 
         $columns = $this->getColumns();
@@ -59,6 +92,12 @@ abstract class BaseModel {
         }
     }
 
+    /**
+     * update a row
+     * @param type $data
+     * @param type $id
+     * @return type
+     */
     public function update($data, $id) {
 
         $columns = $this->getColumns();
@@ -83,6 +122,11 @@ abstract class BaseModel {
         return $this->pdo->prepare($sql)->execute($values);
     }
 
+    /**
+     * delete a row
+     * @param type $id
+     * @return type
+     */
     public function delete($id) {
         $stmt = $this->pdo->prepare("DELETE FROM $this->_table WHERE id = ?");
         return $stmt->execute(array($id));

@@ -3,7 +3,9 @@
 class Response {
 
     /**
-     * request response status
+     * get status
+     * @param type $code
+     * @return type
      */
     private static function getStatus($code) {
         $status = array(
@@ -16,7 +18,9 @@ class Response {
     }
 
     /**
-     * Response for request
+     * send json response
+     * @param type $data
+     * @param type $status
      */
     public static function sendJSON($data, $status = 200) {
         header("HTTP/1.1 " . $status . " " . self::getStatus($status));
@@ -25,6 +29,11 @@ class Response {
         exit();
     }
 
+    /**
+     * convert array to xml
+     * @param type $array
+     * @param type $xml_user_info
+     */
     public static function array2XML($array, &$xml_user_info) {
         foreach ($array as $key => $value) {
             if (is_array($value)) {
@@ -41,6 +50,11 @@ class Response {
         }
     }
 
+    /**
+     * send xml response
+     * @param type $data
+     * @param type $root
+     */
     public static function sendXML($data, $root) {
 
         header('Content-type: application/xhtml+xml');

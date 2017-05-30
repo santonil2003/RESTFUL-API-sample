@@ -32,6 +32,10 @@ var ajaxPolling = setInterval(function () {
  * @returns {coffee}
  */
 function deleteReview(coffeeId, reviewId) {
+
+    if (!confirm("Are you sure ?")) {
+        return;
+    }
     // API call with request method DELETE to delete review
     postAjax(baseUrl + '/review/' + reviewId + '/delete', 'DELETE', 'reviewId=' + reviewId, function (res) {
 
