@@ -1,6 +1,8 @@
 *{
     margin: 0px;
     padding: 0px;
+
+    font-size: 20px;
 }
 
 ul{
@@ -14,19 +16,139 @@ a {
 .container{
     margin: 0px auto;
     width: 960px;
-    border: red solid 1px;
     overflow: hidden;
+
+
+    -webkit-box-shadow: -1px 0px 45px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 0px 45px 0px rgba(0,0,0,0.75);
+    box-shadow: -1px 0px 45px 0px rgba(0,0,0,0.75);
 }
 
 .container .side-bar{
     float: left;
     width: 200px;
     padding: 10px;
+
 }
 
 
 .container .main-content{
     float: left;
-    width: 700px;
+    width: 720px;
     padding: 10px;
+    background: #d4cfcf;
+    min-height: 500px;
+}
+
+ul#coffee-menu li {
+    padding: 4px 2px 4px 8px;
+    border-bottom: #cccccc solid 1px;
+} 
+
+ul#coffee-menu li:hover {
+    background: #ccccff;
+}
+
+ul#coffee-menu li span{
+    float: right;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    display: inline-block;
+    width: 45px;
+    text-align: center;
+    background: #ece7e7;
+}
+
+ul#coffee-menu li a{
+    display: inline-block;
+    text-transform: capitalize;
+}
+
+
+ul.coffee-details li{
+    padding: 8px;
+    background: #e2ebf1;
+}
+
+.coffee-name{
+    border-bottom: #cccccc solid 1px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.coffee-img{
+    text-align: center;
+}
+
+.coffee-img img{
+    max-width: 600px;
+}
+.coffee-avg-rating{
+    background: gold !important;
+    font-weight: bold;
+    font-style: italic;
+}
+
+li.review{
+    margin-top: 5px;
+    background: #efeff2 !important;
+
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+
+.reviewer-name, .rating{
+    border-bottom: #d4cfcf solid 1px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.rating{
+    text-align: right;
+    font-style: italic;
+}
+
+.rating span{
+    float: right;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    display: inline-block;
+    width: 45px;
+    text-align: center;
+    background: #ece7e7;
+}
+
+.review-content {
+    padding: 12px;
+    font-style: italic;
+    border-bottom: #d4cfcf solid 1px;
+}
+
+.action{
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.action a, input[type=button]{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    border: #999999;
+    background: #dedede;
+    margin: 5px;
+
+    padding: 4px 8px;
+}
+
+.update{
+    float: left;
+}
+
+.delete{
+    float: right;
 }

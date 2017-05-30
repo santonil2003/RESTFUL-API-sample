@@ -24,7 +24,7 @@ class CoffeeReviews extends BaseModel
 
     public function getAverageRatingByCoffee($coffeeId)
     {
-        $stmt = $this->pdo->prepare("SELECT AVG(rating) FROM $this->_table WHERE coffee_id = ?");
+        $stmt = $this->pdo->prepare("SELECT ROUND(AVG(rating),2) FROM $this->_table WHERE coffee_id = ?");
         $stmt->execute(array($coffeeId));
         return $stmt->fetchColumn();
     }

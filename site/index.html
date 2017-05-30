@@ -9,8 +9,18 @@
     <body onload="initApp()">
         <div class="container">
             <div class="side-bar">
+
+                <h3>Menu</h3>
+                <hr/>
                 <ul id="coffee-menu">
                 </ul>
+
+                <br/>
+                Sort Menu By : 
+                <select onchange="sortMenu(this.value)">
+                    <option value="name">Name ASC</option>
+                    <option value="rating">Average Rating ASC</option>
+                </select>
             </div>
             <div class="main-content" id="main-content">
                 <div id="coffee-reveiws"></div>

@@ -25,6 +25,13 @@ $route->register('/coffees', 'GET', function () {
     Response::sendJSON($coffees);
 });
 
+$route->register('/coffees/order/(.+)', 'GET', function ($order) {
+    $coffeeObj = new Coffees();
+    // fetch all coffees
+    $coffees = $coffeeObj->coffeesWithAverageRating($order);
+    Response::sendJSON($coffees);
+});
+
 $route->register('/coffee/(\d+)', 'GET', function ($coffeeId) {
     $coffeeObj = new Coffees();
     // fetch coffee by id

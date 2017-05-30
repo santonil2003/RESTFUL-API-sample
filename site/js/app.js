@@ -111,17 +111,27 @@ function saveReview(coffeeId) {
 }
 
 
+function sortMenu(order) {
+    loadMenu(order);
+}
+
+
 
 /**
  * Load coffee menus
  * @returns {undefined}
  */
-function loadMenu() {
-    getAjax(baseUrl + '/coffees', function (response) {
+function loadMenu(order) {
+
+    if (typeof order == 'undefined') {
+        order = 'name';
+    }
+
+    getAjax(baseUrl + '/coffees/order/' + order, function (response) {
         var items = JSON.parse(response);
         var html = '';
         for (var i = 0; i < items.length; i++) {
-            html += '<li><a onclick="loadContent(' + items[i].id + ')">' + items[i].name + '</a></li>';
+            html += '<li><a onclick="loadContent(' + items[i].id + ')">' + items[i].name + '</a><span>' + items[i].rating + '</span></li>';
         }
         document.getElementById('coffee-menu').innerHTML = html;
     });
@@ -159,24 +169,25 @@ function loadDetail(coffeeId) {
         var item = JSON.parse(response);
         var html = '';
 
-        html += '<ul>';
+        html += '<ul class="coffee-details">';
 
-        html += '<li><b> Name : ' + item.name + '</b></li>';
-        html += '<li><img src="' + baseUrl + '/images1/' + item.image_url + '" /></li>';
-        html += '<li>Average Rating : ' + item.average_rating + '</li>';
+        html += '<li class="coffee-name"><b> Name : ' + item.name + '</b></li>';
+        html += '<li class="coffee-img"><img src="' + baseUrl + '/images/' + item.image_url + '" /></li>';
+        html += '<li class="coffee-avg-rating">Average Rating : ' + item.average_rating + '</li>';
         html += '<li>';
 
         // review ul
         html += '<ul class="reviews">';
 
         for (var i = 0; i < item.reviews.length; i++) {
-            html += '<li id="review-' + item.reviews[i].id + '">';
-            html += '<b>' + item.reviews[i].reviewer_name + '</b>';
-            html += '<p>' + item.reviews[i].review + '</p>';
-            html += '<p><i> Rating : ' + item.reviews[i].rating + '</i></p>';
-            html += '<a onclick="loadUpdateReviewForm(' + coffeeId + ',' + item.reviews[i].id + ')">Update</a>';
-            html += ' | ';
-            html += '<a onclick="deleteReview(' + coffeeId + ',' + item.reviews[i].id + ')">Delete</a>';
+            html += '<li id="review-' + item.reviews[i].id + '" class="review">';
+            html += '<p class="reviewer-name"> By : ' + item.reviews[i].reviewer_name + '</p>';
+            html += '<p class="review-content">' + item.reviews[i].review + '</p>';
+            html += '<p class="rating"> Rating : <span>' + item.reviews[i].rating + '</span></p>';
+            html += '<div class="action">';
+            html += '<a class="update" onclick="loadUpdateReviewForm(' + coffeeId + ',' + item.reviews[i].id + ')">Update</a>';
+            html += '<a class = "delete" onclick="deleteReview(' + coffeeId + ',' + item.reviews[i].id + ')">Delete</a>';
+            html += '</div>';
             html += '</li>';
         }
 
