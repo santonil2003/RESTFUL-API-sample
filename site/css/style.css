@@ -75,6 +75,7 @@ ul.coffee-details li{
     border-bottom: #cccccc solid 1px;
     font-size: 20px;
     font-weight: bold;
+    background: #ccffff !important;
 }
 
 .coffee-img{
@@ -160,4 +161,11 @@ li.review{
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
     border-radius: 7px;
+
+    padding: 8px;
+}
+
+.review-form label{
+    display: block;
+    clear: both;
 }

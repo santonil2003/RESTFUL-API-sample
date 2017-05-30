@@ -51,7 +51,7 @@ function updateReview(coffeeId, reviewId) {
     // pre-pare data json
     var data = {
         reviewer_name: document.getElementById('update-name-' + reviewId).value,
-        review: document.getElementById('update-review-' + reviewId).value,
+        review: document.getElementById('update-review-' + reviewId).value
     };
 
     // find the selected rating..
@@ -87,7 +87,7 @@ function saveReview(coffeeId) {
         reviewer_name: document.getElementById('name-' + coffeeId).value,
         review: document.getElementById('review-' + coffeeId).value,
         rating: 3, // will be updated by loop
-        coffee_id: coffeeId,
+        coffee_id: coffeeId
     };
 
 
@@ -105,10 +105,16 @@ function saveReview(coffeeId) {
 
         // load updated review list
         loadDetail(coffeeId);
+
+        // reset form
+        document.getElementById('name-' + coffeeId).value = "";
+        document.getElementById('review-' + coffeeId).value = "";
     });
 
 
 }
+
+
 
 
 function sortMenu(order) {
@@ -224,16 +230,16 @@ function loadUpdateReviewForm(coffeeId, reviewId) {
     var html = '';
 
     html += '<ul class="review-form">';
-    html += '<li><b> Name : </b> <input type = "text" id = "update-name-' + reviewId + '"></li>';
-    html += '<li><b> Review : </b> <textarea id = "update-review-' + reviewId + '" ></textarea></li>';
+    html += '<li><label> Name </label> <input type = "text" id = "update-name-' + reviewId + '"></li>';
+    html += '<li><label> Review </label> <textarea id = "update-review-' + reviewId + '" ></textarea></li>';
 
     // rating li start
-    html += '<li> <b> Rating : </b><br>';
-    html += '<input type="radio" name="rating_' + reviewId + '" value="1"> 1<br>';
-    html += '<input type="radio" name="rating_' + reviewId + '" value="2"> 2<br>';
-    html += '<input type="radio" name="rating_' + reviewId + '" value="3"> 3<br>';
-    html += '<input type="radio" name="rating_' + reviewId + '" value="4"> 4<br>';
-    html += '<input type="radio" name="rating_' + reviewId + '" value="5"> 5<br>';
+    html += '<li><label> Rating : </label>';
+    html += '<input type="radio" name="rating_' + reviewId + '" value="1"> 1 ';
+    html += '<input type="radio" name="rating_' + reviewId + '" value="2"> 2 ';
+    html += '<input type="radio" name="rating_' + reviewId + '" value="3"> 3 ';
+    html += '<input type="radio" name="rating_' + reviewId + '" value="4"> 4 ';
+    html += '<input type="radio" name="rating_' + reviewId + '" value="5"> 5 ';
     html += '</li>';
     // end of rating li
 
@@ -275,16 +281,16 @@ function getReviewForm(coffeeId) {
     var html = '';
 
     html += '<ul class="review-form">';
-    html += '<li><b> Name : </b> <input type = "text" id="name-' + coffeeId + '"></li>';
-    html += '<li><b> Review : </b> <textarea id="review-' + coffeeId + '"></textarea></li>';
+    html += '<li><label>Name</label><input type = "text" id="name-' + coffeeId + '"></li>';
+    html += '<li><label>Review</label><textarea id="review-' + coffeeId + '"></textarea></li>';
 
     // rating li
-    html += '<li class="radio-li"> <b> Rating : </b><br>';
-    html += '<input type="radio" name="rating" value="1"> 1<br>';
-    html += '<input type="radio" name="rating" value="2"> 2<br>';
-    html += '<input type="radio" name="rating" value="3"> 3<br>';
-    html += '<input type="radio" name="rating" value="4"> 4<br>';
-    html += '<input type="radio" name="rating" value="5"> 5<br>';
+    html += '<li class="radio-li"> <label> Rating</label>';
+    html += '<input type="radio" name="rating" value="1"> 1 ';
+    html += '<input type="radio" name="rating" value="2"> 2 ';
+    html += '<input type="radio" name="rating" value="3"> 3 ';
+    html += '<input type="radio" name="rating" value="4"> 4 ';
+    html += '<input type="radio" name="rating" value="5"> 5 ';
     html += '</li>';
     // end of rating li
 
