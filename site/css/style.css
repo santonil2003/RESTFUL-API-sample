@@ -152,3 +152,12 @@ li.review{
 .delete{
     float: right;
 }
+
+.review-form {
+    margin-top: 5px;
+    background: #efeff2 !important;
+
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}

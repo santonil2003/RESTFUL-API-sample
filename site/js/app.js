@@ -279,7 +279,7 @@ function getReviewForm(coffeeId) {
     html += '<li><b> Review : </b> <textarea id="review-' + coffeeId + '"></textarea></li>';
 
     // rating li
-    html += '<li> <b> Rating : </b><br>';
+    html += '<li class="radio-li"> <b> Rating : </b><br>';
     html += '<input type="radio" name="rating" value="1"> 1<br>';
     html += '<input type="radio" name="rating" value="2"> 2<br>';
     html += '<input type="radio" name="rating" value="3"> 3<br>';
